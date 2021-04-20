@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext, useState } from "react";
+import { Box } from "@chakra-ui/react";
+import "./App.css";
+import Create from "./components/Create";
+import NotesOverview from "./components/NotesOverview";
+
+import ModalView from "./components/Modal";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [notes, setNotes] = useState([]);
+
+	return (
+		<Box minHeight='100vh' bgColor='#333'>
+			{/* <Box pos='absolute'>
+				<ModalView />
+			</Box> */}
+
+			<Create />
+
+			<NotesOverview />
+		</Box>
+	);
 }
 
 export default App;
