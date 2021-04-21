@@ -4,11 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ModalContextProvider from "./context/ModalContext";
-
+import { ChakraProvider } from "@chakra-ui/react";
 ReactDOM.render(
-	<ModalContextProvider>
-		<App />
-	</ModalContextProvider>,
+	<ChakraProvider>
+		<ModalContextProvider>
+			<App />
+		</ModalContextProvider>
+	</ChakraProvider>,
 	document.getElementById("root")
 );
 

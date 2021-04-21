@@ -11,9 +11,7 @@ function App() {
 
 	return (
 		<Box minHeight='100vh' bgColor='#333'>
-			{/* <Box pos='absolute'>
-				<ModalView />
-			</Box> */}
+			{/* <ModalView /> */}
 
 			<Create />
 

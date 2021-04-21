@@ -1,28 +1,15 @@
 import { Box } from "@chakra-ui/layout";
 import { useState, Fragment, useEffect } from "react";
+import "../index.css";
+import ContentEditable from "react-contenteditable";
 
-const Editable = ({ contentRef }) => {
-	const [isEditing, setEditing] = useState(false);
-
-	 
-
-	 
+const Editable = ({ ...EditableProps }) => {
 	return (
-		<Fragment>
-			<Box
-				ref={contentRef}
-				contentEditable
-				outline='none'
-				fontSize='4rem'
-				data-title='title'
-				aria-label='title'
-				role='textbox'
-				aria-multiline
-				tabIndex='0'
-				suppressContentEditableWarning
-				// onKeyUp={handleKeyDownHandler}
-			></Box>
-		</Fragment>
+		<ContentEditable
+			className='editable'
+			{...EditableProps}
+			placeholder='Add note...'
+		/>
 	);
 };
 

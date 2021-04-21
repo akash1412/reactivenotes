@@ -25,10 +25,11 @@ const NotesOverview = () => {
 			color='#fff'
 			fontSize='1.3rem'
 			d='grid'
-			gridTemplateColumns=' repeat(auto-fit, minmax(150px, 250px))'
+			gridTemplateColumns='repeat(auto-fit, minmax(150px, 250px))'
+			gridTemplateRows='min-content'
 			gridColumnGap='2rem'>
 			{notes.map(({ id, ...contentProps }) => (
-				<Card key={id} id={id} {...contentProps} />
+				<Card key={id} id={id} contentProps={contentProps} />
 			))}
 		</Box>
 	);
