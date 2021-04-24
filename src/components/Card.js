@@ -1,49 +1,41 @@
-import { Box, Heading, Text } from "@chakra-ui/layout";
-import { Fragment } from "react";
-import { Icon, Tooltip } from "@chakra-ui/react";
-import { FiEdit } from "react-icons/fi";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { fireStoreDB } from "../firebase/config";
+import { Box, Icon } from "@chakra-ui/react";
+import { useContext } from "react";
+
+import { RiPushpin2Line, RiPushpin2Fill } from "react-icons/ri";
+import { ModalContext } from "./../context/ModalContext";
 
 const Card = ({ id, contentProps }) => {
-	const { title, textArr, html } = contentProps;
+	const { handleModalOpenAction } = useContext(ModalContext);
 
-	const handleDeleteNoteAction = noteId => async () => {
-		await fireStoreDB.collection("notes").doc(noteId).delete();
+	const { html, lastUpdated, color, isPinned } = contentProps;
+
+	const handleClick = selectedNote => () => {
+		handleModalOpenAction(selectedNote);
 	};
 
 	return (
 		<Box
+			w='250px'
+			mb='2%'
 			key={id}
 			px='1.2rem'
 			py='.5rem'
-			border='1px solid #e8eaed'
+			borderWidth='2px'
+			borderStyle='solid'
+			borderColor={color}
 			borderRadius='.4rem'
 			d='flex'
-			flexDir='column'>
-			<Heading as='h2'>{title}</Heading>
-			<Box mt='2rem'>
-				{textArr.map(txt => (
-					<Fragment>
-						<Text fontSize='1.5rem' overflowWrap='break-word'>
-							{txt}
-						</Text>
-						<br />
-					</Fragment>
-				))}
+			flexDir='column'
+			cursor='pointer'
+			onClick={handleClick({ id, ...contentProps })}>
+			<Box as='span' alignSelf='flex-end'>
+				{!isPinned ? (
+					<Icon as={RiPushpin2Line} w='1.5rem' h='1.5rem' />
+				) : (
+					<Icon as={RiPushpin2Fill} w='1.5rem' h='1.5rem' />
+				)}
 			</Box>
-			<Box marginTop='autp' d='flex' justifyContent='space-around'>
-				<Tooltip label='edit' placement='right' openDelay={200}>
-					<Box as='span'>
-						<Icon as={FiEdit} w='2rem' h='2rem' cursor='pointer' />
-					</Box>
-				</Tooltip>
-				<Tooltip label='delete' placement='right' openDelay={200}>
-					<Box as='span' onClick={handleDeleteNoteAction(id)}>
-						<Icon as={RiDeleteBinLine} w='2rem' h='2rem' cursor='pointer' />
-					</Box>
-				</Tooltip>
-			</Box>
+			<Box mt='2rem' dangerouslySetInnerHTML={{ __html: html }}></Box>
 		</Box>
 	);
 };

@@ -6,24 +6,26 @@ import Card from "./Card";
 const NotesOverview = () => {
 	const [notes, setNotes] = useState([]);
 	useEffect(() => {
-		const collectionRef = fireStoreDB.collection("notes");
+		const fetcher = async () => {
+			const collectionRef = await fireStoreDB.collection("notes");
 
-		collectionRef.onSnapshot(snap => {
-			let docs = [];
-			snap.forEach(doc => {
-				docs.push({ id: doc.id, ...doc.data() });
+			collectionRef.onSnapshot(snap => {
+				let docs = [];
+				snap.forEach(doc => {
+					docs.push({ id: doc.id, ...doc.data() });
+				});
+				setNotes(docs);
 			});
-			setNotes(docs);
-		});
+		};
+
+		fetcher();
 	}, []);
 
 	return (
 		<Box
 			m='0 auto'
 			w='80%'
-			mt='5rem'
-			color='#fff'
-			fontSize='1.3rem'
+			my='5rem'
 			d='grid'
 			gridTemplateColumns='repeat(auto-fit, minmax(150px, 250px))'
 			gridTemplateRows='min-content'

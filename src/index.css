@@ -30,9 +30,18 @@ code {
 	padding: 0 1.2rem;
 }
 
+.minH {
+	min-height: 10rem;
+}
+
 .editable:empty:before {
 	content: attr(placeholder);
 	color: #adb5bd;
 	pointer-events: none;
 	display: block; /* For Firefox */
+}
+
+.masonrylayout{
+	display: grid;
+	grid-template-rows: masonry;
 }

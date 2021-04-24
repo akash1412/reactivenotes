@@ -4,13 +4,25 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ModalContextProvider from "./context/ModalContext";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+
+const theme = extendTheme({
+	colors: {
+		black: {
+			50: "#5f6368",
+			100: "#202124",
+		},
+	},
+});
+
 ReactDOM.render(
-	<ChakraProvider>
-		<ModalContextProvider>
-			<App />
-		</ModalContextProvider>
-	</ChakraProvider>,
+	<React.StrictMode>
+		<ChakraProvider theme={theme}>
+			<ModalContextProvider>
+				<App />
+			</ModalContextProvider>
+		</ChakraProvider>
+	</React.StrictMode>,
 	document.getElementById("root")
 );
 
