@@ -5,6 +5,7 @@ export const ModalContext = createContext({});
 
 const ModalContextProvider = ({ children }) => {
 	const [isModalOpen, setModalOpen] = useState(false);
+	const [noteTitle, setTitle] = useState("");
 	const [noteContent, setNoteContent] = useState(null);
 	const [editableInnerHtml, setEditableInnerHtml] = useState("");
 
@@ -14,6 +15,7 @@ const ModalContextProvider = ({ children }) => {
 
 	const handleModalOpenAction = ({ html, ...contents }) => {
 		setModalOpen(true);
+
 		setEditableInnerHtml(html);
 		setNoteContent(contents);
 	};
@@ -23,11 +25,16 @@ const ModalContextProvider = ({ children }) => {
 	};
 
 	const handleUpdateAction = updatedNote => async () => {
-		console.log(updatedNote);
 		await fireStoreDB
 			.collection("notes")
 			.doc(updatedNote.id)
 			.update(updatedNote);
+
+		setModalOpen(false);
+	};
+
+	const handleInputChange = ({ target: { value } }) => {
+		setNoteContent({ ...noteContent, title: value });
 	};
 
 	const handleIsPinnedState = () => {
@@ -38,7 +45,7 @@ const ModalContextProvider = ({ children }) => {
 		<ModalContext.Provider
 			value={{
 				isModalOpen,
-
+				handleInputChange,
 				handlePalleteColor,
 				noteContent,
 				editableInnerHtml,

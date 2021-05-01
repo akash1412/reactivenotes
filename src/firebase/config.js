@@ -16,4 +16,6 @@ firebase.initializeApp(firebaseConfig);
 
 const fireStoreDB = firebase.firestore();
 
-export { fireStoreDB };
+const deleteDoc = id => fireStoreDB.collection("notes").doc(id).delete();
+
+export { fireStoreDB, deleteDoc };

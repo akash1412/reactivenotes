@@ -11,7 +11,7 @@ import {
 
 const ColorPalete = ({ curColor, onChange }) => {
 	return (
-		<Popover placement='top-end'>
+		<Popover placement='bottom-end'>
 			<PopoverTrigger>
 				<Button
 					borderRadius='50%'
@@ -20,7 +20,7 @@ const ColorPalete = ({ curColor, onChange }) => {
 			</PopoverTrigger>
 			<Portal>
 				<PopoverContent w='250px'>
-					<PopoverBody bgColor='#000'>
+					<PopoverBody bgColor='white.20'>
 						<CirclePicker
 							colors={[
 								"#202124",

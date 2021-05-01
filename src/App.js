@@ -9,7 +9,7 @@ import EditorOverview from "./components/EditorOverview";
 
 function App() {
 	return (
-		<Box minHeight='100vh'>
+		<Box minHeight='100vh' bgColor='white.20' px='.5rem'>
 			<ModalView />
 			<EditorOverview />
 

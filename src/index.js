@@ -12,6 +12,10 @@ const theme = extendTheme({
 			50: "#5f6368",
 			100: "#202124",
 		},
+		white: {
+			20: "#fcf7ff",
+			40: "#f8f9fa",
+		},
 	},
 });
 

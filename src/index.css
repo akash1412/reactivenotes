@@ -30,6 +30,32 @@ code {
 	padding: 0 1.2rem;
 }
 
+.quill-editor {
+	display: flex;
+	flex-direction: column;
+}
+
+.quill-editor .ql-container {
+	order: -1;
+}
+.quill-editor .ql-container {
+	border: none !important;
+	min-height: 8rem;
+}
+
+.quill-editor .ql-toolbar {
+	border: none !important;
+}
+
+/* .ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button {
+} */
+
+.ql-snow.ql-toolbar button:hover,
+.ql-snow .ql-toolbar button:hover {
+	stroke: #000 !important;
+}
+
 .minH {
 	min-height: 10rem;
 }
@@ -41,7 +67,7 @@ code {
 	display: block; /* For Firefox */
 }
 
-.masonrylayout{
+.masonrylayout {
 	display: grid;
 	grid-template-rows: masonry;
 }

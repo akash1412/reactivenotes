@@ -1,17 +1,15 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import "../index.css";
 
 const Quill = ({ value, onChange }) => {
 	const modules = {
 		toolbar: {
 			container: [
-				["bold", "italic", "underline", "strike", "blockquote"],
-				[{ size: ["large", "small", false, "huge"] }, { color: [] }],
-				[{ list: "ordered" }, { list: "bullet" }, , { align: [] }],
-				["link"],
-				["clean"],
+				["bold", "italic", "underline"],
+				// [{ size: ["large", "small", false, "huge"] }, { color: [] }],
+				[{ list: "ordered" }, { list: "bullet" }],
 			],
-			// handlers: { image: this.imageHandler }
 		},
 		clipboard: { matchVisual: false },
 	};
@@ -37,6 +35,7 @@ const Quill = ({ value, onChange }) => {
 	return (
 		<ReactQuill
 			value={value}
+			className='quill-editor'
 			onChange={onChange}
 			modules={modules}
 			formats={formats}
